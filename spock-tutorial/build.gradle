@@ -1,0 +1,33 @@
+group 'ro.tibtof.playground'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: "$junitVersion"
+    testCompile group: 'org.codehaus.groovy', name: 'groovy', version: "$groovyVersion"
+    testCompile group: 'org.spockframework', name: 'spock-core', version: "$spockFrameworkVersion"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+test {
+    jacoco {
+        append true
+    }
+}
