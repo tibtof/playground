@@ -7,9 +7,10 @@ import spock.lang.Unroll
 
 class BookServiceSpecification extends Specification {
 
-    public static final Book BookWithId1 = new Book(1, 'Java Testing with Spock', 'Konstantinos Kapelonis')
-    public static
-    final Book BookWithId2 = new Book(2, 'JUnit in Action', 'Petar Tahchiev, Felipe Leme, Vincent Massol, and Gary Gregory')
+    public static final Book BOOK_1 =
+            new Book(1, 'Java Testing with Spock', 'Konstantinos Kapelonis')
+    public static final Book BOOK_2 =
+            new Book(2, 'JUnit in Action', 'Petar Tahchiev, Felipe Leme, Vincent Massol, and Gary Gregory')
 
     BookService bookService;
     BookRepository bookRepository;
@@ -22,9 +23,9 @@ class BookServiceSpecification extends Specification {
                 case Integer.MIN_VALUE..0:
                     throw new IllegalArgumentException("Invalid Book ID");
                 case 1:
-                    return BookWithId1
+                    return BOOK_1
                 case 2:
-                    return BookWithId2
+                    return BOOK_2
                 default:
                     return null;
             }
@@ -40,8 +41,8 @@ class BookServiceSpecification extends Specification {
 
         where:
         id || expectedBook
-        1  || BookWithId1
-        2  || BookWithId2
+        1  || BOOK_1
+        2  || BOOK_2
     }
 
     @Unroll
